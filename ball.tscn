@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8rpgpf8lepqj"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cbx31"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_x8fbi"]
+
+[node name="Ball" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_cbx31")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+rotation = -3.14159
+scale = Vector2(20, 20)
+mesh = SubResource("SphereMesh_x8fbi")

@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://bf7fpscn2ki5x"]
+
+[ext_resource type="Script" uid="uid://bqagwrah1mla" path="res://scripts/ui/character_control.gd" id="1_glji8"]
+[ext_resource type="Texture2D" uid="uid://dxgl0s5qldquf" path="res://assets/pong paddle.png" id="1_ujhtd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ujhtd"]
+size = Vector2(32, 256)
+
+[node name="Paddle" type="CharacterBody2D"]
+position = Vector2(88, 154)
+script = ExtResource("1_glji8")
+
+[node name="Paddle" type="Sprite2D" parent="."]
+position = Vector2(-8, 6)
+texture = ExtResource("1_ujhtd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-8, 6)
+shape = SubResource("RectangleShape2D_ujhtd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-8, 6)
+shape = SubResource("RectangleShape2D_ujhtd")

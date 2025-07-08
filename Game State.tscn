@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://d3g87itg5jg2l"]
+[gd_scene load_steps=8 format=3 uid="uid://d3g87itg5jg2l"]
 
 [ext_resource type="Script" uid="uid://di6wxknwiod7w" path="res://scripts/ui/button_controller.gd" id="1_17qpt"]
 [ext_resource type="PackedScene" uid="uid://bf7fpscn2ki5x" path="res://Paddle.tscn" id="2_8kka3"]
 [ext_resource type="PackedScene" uid="uid://b8rpgpf8lepqj" path="res://ball.tscn" id="3_ai3px"]
 [ext_resource type="Script" uid="uid://dnr6o1msfwntg" path="res://scripts/ball/ball_controller.gd" id="4_syg2e"]
-[ext_resource type="Script" uid="uid://bjxffohsdhqpe" path="res://scripts/collision/collision_handler.gd" id="5_y4mrq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8kka3"]
 size = Vector2(1152, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syg2e"]
+size = Vector2(20, 599)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_syg2e"]
+radius = 96.566
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -37,25 +42,34 @@ script = ExtResource("1_17qpt")
 position = Vector2(575, 71)
 script = ExtResource("4_syg2e")
 
-[node name="BottomArea" type="Area2D" parent="."]
+[node name="Top" type="StaticBody2D" parent="."]
 
-[node name="Bottom" type="StaticBody2D" parent="BottomArea"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Top"]
+position = Vector2(576, 12.5)
+shape = SubResource("RectangleShape2D_8kka3")
 
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="BottomArea/Bottom"]
+[node name="Bottom" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Bottom"]
 position = Vector2(576, 636)
 shape = SubResource("RectangleShape2D_8kka3")
 
-[node name="TopArea" type="Area2D" parent="."]
-script = ExtResource("5_y4mrq")
+[node name="Left" type="StaticBody2D" parent="."]
 
-[node name="Top" type="StaticBody2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Left"]
+position = Vector2(10, 324.5)
+shape = SubResource("RectangleShape2D_syg2e")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
-position = Vector2(314, 78)
+[node name="Right" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
-position = Vector2(262, -65.5)
-shape = SubResource("RectangleShape2D_8kka3")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Right"]
+position = Vector2(1142, 324.5)
+shape = SubResource("RectangleShape2D_syg2e")
+
+[node name="Circle" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
+position = Vector2(576, 334)
+shape = SubResource("CircleShape2D_syg2e")
 
 [connection signal="pressed" from="Main Menu" to="Main Menu" method="_button_pressed_main_menu"]
-[connection signal="area_entered" from="TopArea" to="TopArea" method="_on_area_entered"]
